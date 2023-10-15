@@ -1,5 +1,5 @@
 // This script scrapes the list of positively talked stocks on the present day on subreddit 'r/wallstreetbets'
-
+import fs from 'fs';
 async function fetchRedditPost() {
     const response = await fetch(
         "https://www.reddit.com/user/OPINION_IS_UNPOPULAR.json?sort=new&limit=50"
@@ -54,12 +54,16 @@ function generateCommentsString(redditPostComments) {
 }
 
 
-// fetchRedditPost()
-//     .then((redditPostComments) => {
-//         console.log(generateCommentsString(redditPostComments));
-//     })
-//     .catch((error) => {
-//         console.error(error);
-//     });
+fetchRedditPost()
+    .then((redditPostComments) => {
+        //save in a text file
+        
+        fs.writeFile('reddit_comments.txt', generateCommentsString(redditPostComments), function (err) {
+            if (err) return console.log(err);
+        });
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
-export { fetchRedditPost, generateCommentsString }
+// export { fetchRedditPost, generateCommentsString }
