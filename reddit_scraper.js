@@ -1,6 +1,7 @@
 // This script scrapes the list of positively talked stocks on the present day on subreddit 'r/wallstreetbets'
 import fs from 'fs';
 async function fetchRedditPost() {
+    console.log("Fetching Reddit post...");
     const response = await fetch(
         "https://www.reddit.com/user/OPINION_IS_UNPOPULAR.json?sort=new&limit=50"
     );
@@ -24,11 +25,12 @@ async function fetchRedditPost() {
     const commentResponse = await fetch(permalink);
     const commentJson = await commentResponse.json();
     // commentJson[0] -> OG post data; commentJson[1] -> comment data
-    return commentJson[1].data.children;
+    return [commentJson[1].data.children, latestPost];
 }
   
   
 function generateCommentsString(redditPostComments) {
+    console.log("Generating comments string...");
     let commentString = "";
     redditPostComments.forEach((comment) => {
         if (commentString.length > 10000) {
@@ -54,16 +56,16 @@ function generateCommentsString(redditPostComments) {
 }
 
 
-fetchRedditPost()
-    .then((redditPostComments) => {
-        //save in a text file
+// fetchRedditPost()
+//     .then((redditPostComments) => {
+//         //save in a text file
         
-        fs.writeFile('reddit_comments.txt', generateCommentsString(redditPostComments), function (err) {
-            if (err) return console.log(err);
-        });
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+//         fs.writeFile('reddit_comments.txt', generateCommentsString(redditPostComments[0]), function (err) {
+//             if (err) return console.log(err);
+//         });
+//     })
+//     .catch((error) => {
+//         console.error(error);
+//     });
 
-// export { fetchRedditPost, generateCommentsString }
+export { fetchRedditPost, generateCommentsString }

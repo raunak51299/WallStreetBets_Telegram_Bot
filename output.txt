@@ -1,0 +1,7 @@
+Based on the comments and the number of people agreeing with each comment, here are the top 5 stocks/indices mentioned:
+
+1. SPY (S&P 500 Index) - Negative sentiment.
+2. Yoga pants company - Negative sentiment.
+3. Apple - Neutral sentiment.
+4. NVDA (NVIDIA) - Positive sentiment.
+5. Nasdaq - Positive sentiment.
