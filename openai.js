@@ -12,12 +12,12 @@ async function recommendStocks() {
   const redditPostComments = await fetchRedditPost();
   const text = generateCommentsString(redditPostComments[0]);
 
-  const prompt = `The following text that is between '### START OF CONVERSATION DATA' and '### END OF CONVERSATION DATA' contains comments from a reddit stock trading thread. Return the top 5 stocks/indices that people in this group talked about. Take into account the number of times other people agree with each comment. Additionaly, mention if the sentiment of the comment regarding that stock/index is positive or negative. 
-    ### START OF CONVERSATION DATA
+  const prompt = `The following text that is between '#START' and '#END  contains comments from a reddit stock trading thread. Return the top 5 stocks/indices that people in this group talked about. Take into account the number of times other people agree with each comment. Additionaly, mention if the sentiment of the comment regarding that stock/index is positive or negative. 
+    #START
 
     ${text}
 
-    ### END OF CONVERSATION DATA
+    #END
 
     Here is an example of the desired output format:
 
@@ -45,10 +45,6 @@ async function recommendStocks() {
     frequency_penalty: 0,
     presence_penalty: 0,
   });
-
-  //console.log(response.choices[0].message.content);
-
-  //export response.choices[0].message.content;
 
   const res = response.choices[0].message.content;
   console.log(res);
