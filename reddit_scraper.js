@@ -1,5 +1,4 @@
 // This script scrapes the list of positively talked stocks on the present day on subreddit 'r/wallstreetbets'
-import fs from 'fs';
 async function fetchRedditPost() {
     console.log("Fetching Reddit post...");
     const response = await fetch(

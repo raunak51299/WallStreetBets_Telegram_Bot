@@ -1,6 +1,5 @@
 import OpenAI from 'openai';
 import 'dotenv/config';
-import fs from 'fs';
 import { fetchRedditPost, generateCommentsString } from './reddit_scraper.js';
 
 const openai = new OpenAI({
@@ -55,9 +54,5 @@ async function recommendStocks() {
   console.log(res);
   return res;
 }
-
-const text = await recommendStocks();
-//save in txt file
-fs.writeFileSync('output.txt', text);
 
 export { recommendStocks };
