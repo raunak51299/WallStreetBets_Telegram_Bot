@@ -4,7 +4,7 @@ import {recommendStocks} from './openai.js';
 import './telegram_bot.js';
     
 // Run everyday at 7:30 AM IST every day
-cron.schedule('0 7 * * *', async () => {
+cron.schedule('0 2 * * *', async () => {
     const date = new Date();
     console.log("Running cron job... at " + date.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
     const text = await recommendStocks();
